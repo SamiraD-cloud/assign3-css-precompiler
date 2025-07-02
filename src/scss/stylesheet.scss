@@ -1,0 +1,315 @@
+/* scss */
+
+// variables 
+$primary-colour: #111111;
+$secondary-colour: #324360;
+$hover-colour: #35c4ce;
+$body-colour: #787878;
+$heading-font: 'Josefin Sans', sans-serif;
+
+// transition mixin
+@mixin transition($time) {
+    transition: $time;
+}
+
+// font size mixin
+@mixin font-size($size) {
+    font-size: $size;
+}
+
+body {
+    font-family: Quando;
+    @include font-size(15px); // scss mixin applied
+    color: $body-colour; // scss variable applied
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+p {
+    margin-bottom: 25px;
+    line-height: 1.6em;
+}
+a {
+    font-weight: 400;
+    text-decoration: none;
+    color: $primary-colour; // scss variable applied
+    @include transition(.20s); // scss mixin applied
+}
+a:hover {
+    color: #999999;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 25px;
+    margin-bottom: 20px;
+    font-family: $heading-font; // scss variable applied
+    font-weight: 400;
+    line-height: 1.3em;
+    word-wrap: break-word;
+    color: $primary-colour; // scss variable applied
+}
+h1 {
+    @include font-size(37px); // scss mixin applied
+}
+h2 {
+    @include font-size(31px); // scss mixin applied
+}
+h3 {
+    @include font-size(26px); // scss mixin applied
+}
+h4 {
+    @include font-size(21px); // scss mixin applied
+}
+h5 {
+    @include font-size(18px); // scss mixin applied
+}
+h6 {
+    @include font-size(15px); // scss mixin applied
+}
+
+
+.container {
+    width: 94%;
+    margin: 0 auto;
+}
+
+
+// scss nesting 
+/* header and main nav */
+header {
+    font-family: $heading-font; // scss variable applied
+
+    nav { 
+        ul {
+            display: none;
+        }
+    }
+}
+
+.top-logo {
+    width: 200px;
+    margin: 20px auto 40px;
+}
+
+
+
+/* posts */
+article {
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.image-part {
+    margin-bottom: 10px;
+}
+
+// scss nesting 
+.post-title {
+    margin-top: 0;
+    
+    a {
+        color: $secondary-colour;
+        text-transform: uppercase;
+        @include font-size(26px); // scss mixin applied
+        font-weight: 900;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        line-height: 1.3em;
+        @include transition(all .3s ease); // scss mixin applied
+    
+        &:hover {
+            color: $hover-colour; // scss variable applied
+        }
+    }
+}
+
+// scss nesting 
+/* footer */
+footer {
+    padding: 30px 0;
+    text-align: center;
+    background: #eaf2ff;
+    color: #989898;
+     
+    a {
+        color: #989898;
+    
+        &:hover {
+            color: $primary-colour; // scss variable applied
+        }
+    }
+
+    .footer-logo {
+        width: 200px;
+        margin: 20px auto;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .footer-social-links {
+        padding: 20px 0;
+        line-height: 2em;
+    
+        a {
+            margin: 0 10px;
+            @include font-size(16px); // scss mixin applied
+            letter-spacing: 1px;
+            text-transform: uppercase;
+    
+            span {
+                display: none;
+            }
+        }
+    }
+
+    #footer-copyright {
+        padding: 20px 0;
+        @include font-size(12px); // scss mixin applied
+        color: #989898;
+    }
+}
+
+@media only screen and (min-width: 650px) {
+    .container {
+        width: 90%;
+    }
+
+    // scss nesting 
+    header {
+        nav {
+            max-width: 1170px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60px;
+
+            ul {
+                display: flex;
+                
+                /* sub nav */
+                ul {
+                    visibility: hidden;
+                    opacity: 0;
+                    display: block;
+                    position: absolute;
+                    z-index: 9999;
+                    left: 0;
+                    background: #f0f0f0;
+                    @include transition(all .2s ease-out); // scss mixin applied
+
+                    li {
+                        border-top: 1px solid #e9e9e9;
+                        margin: 0;
+                    }
+
+                    a {
+                        display: block;
+                        color: $primary-colour; // scss variable applied
+                        min-width: 175px;
+                        margin: 0;
+                        padding: 20px 10px;
+                        line-height: 1.4em;
+                        letter-spacing: 1px;
+                        @include transition(.35s); // scss mixin applied
+
+                        &:hover {
+                            background: #ffffff;
+                            color: #000; 
+                        }
+                    }
+                }
+
+                li {
+                    &:hover {
+                        ul {
+                            visibility: visible;
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+
+            li {
+                margin: 0 15px;
+                position: relative;
+                line-height: 24px;
+
+                &.menu-item-has-children > a::after {
+                    margin-left: 7px;
+                    font-family: 'FontAwesome';
+                    @include font-size(13px); // scss mixin applied
+                    color: $secondary-colour; // scss variable applied
+                    content: '\f078';
+                }
+        
+            }
+
+            a {
+                font-family: 'Josefin Sans', sans-serif;
+                color: $secondary-colour; // scss variable applied
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                @include font-size(12px); // scss mixin applied
+                font-weight: 900;
+
+                &:hover {
+                    color: $hover-colour; // scss variable applied
+                }
+            }
+        }
+    }
+     
+    .current-menu-item a {
+        border-bottom: 2px solid $secondary-colour; // scss variable applied
+    }
+
+
+    /* posts */
+    article {
+        display: flex;
+    }
+
+    // scss nesting 
+    .image-part {
+        flex: 1;
+        overflow: hidden;
+        margin-bottom: 0;
+        
+        img {
+            @include transition(transform 3.5s ease-in-out); // scss mixin applied 
+
+            &:hover {
+                transform: scale(1.5,1.5);
+            }
+        }
+    }
+
+    .content-part {
+        flex: 1;
+        padding-left: 50px;
+    }
+    
+
+    // scss nesting 
+    /* footer */
+    .footer-social-links {
+        a {
+            margin: 0 28px;
+
+            span {
+                display: inline;
+                @include font-size(11px); // scss mixin applied
+            }
+        }
+
+        i {
+            margin-right: 5px;
+        }
+    }
+}   
